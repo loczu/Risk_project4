@@ -17,11 +17,28 @@ cena = df['data']
 cena = round((1/0.00045359237) * cena, 2)
 zwrot = zwroty(cena)
 
-lam = 0.96
-w = []
-for i in range(len(zwrot)):
-    w.append(lam**(i+1))
+def wazona(lam, data, level):
+    w = []
+    for i in range(len(data)):
+        w.append(lam**(i+1))
 
-waga = []
-for i in range(len(zwrot)):
-    waga.append(1/(1+sum(w))*lam**i)
+    waga = []
+    for i in range(len(data)):
+        waga.append(1/(1+sum(w))*lam**i)
+
+    arr = np.array([data,
+                    waga])
+
+    array = arr[:, np.argsort(arr[0, :])]
+
+    x = 0
+    for i in range(len(data)):
+        x += array[1,i]
+        if x > (1-level):
+            res = array[0,i]
+            break
+    
+    return res
+
+print(wazona(0.96, zwrot, 0.99))
+print(wazona(0.96, zwrot, 0.95))
