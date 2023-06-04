@@ -63,12 +63,20 @@ def plot_VaR(df=8.383690833071302, loc=0.004378205763668096, scale = 1.840771049
     plt.plot(x, data, color = 'red', label = 'teoretyczna')
     ax.set_xlim([np.min([VaR_99,x[0]])-0.5, x[-1]])
     ax.hist(zwrot, density = True, bins='auto', histtype='stepfilled', color = 'blue', alpha=0.2, label = 'nasz rozkład')
-    plt.axvline(x = VaR_95, color = 'black', label = 'VaR 95 teoretyczny')
-    plt.axvline(x = VaR_99, color = 'black', label = 'VaR 99 teoretyczny')
-    plt.axvline(x = np.quantile(zwrot, 0.05), color = 'gray', label = 'VaR 95 nasz')
-    plt.axvline(x = np.quantile(zwrot, 0.01), color = 'gray', label = 'VaR 99 nasz')
+    plt.axvline(x = VaR_95, color = 'black', label = 'VaR 95')
+    plt.axvline(x = VaR_99, color = 'gray', label = 'VaR 99')
+    plt.title('Metoda parametryczna z rozkładem t-studenta')
     ax.legend(loc='best', frameon=False)
 
     plt.show()
 
 print(plot_VaR())
+
+fig, ax = plt.subplots(1, 1)
+ax.hist(zwrot, density = True, bins='auto', histtype='stepfilled', color = 'blue', alpha=0.2, label = 'nasz rozkład')
+plt.axvline(x = np.quantile(zwrot, 0.05), color = 'black', label = 'VaR 95')
+plt.axvline(x = np.quantile(zwrot, 0.01), color = 'gray', label = 'VaR 99')
+plt.title('Metoda historyczna zwykła')
+ax.legend(loc='best', frameon=False)
+
+plt.show()
