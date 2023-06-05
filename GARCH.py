@@ -36,6 +36,9 @@ for i in range(1,len(zwrot)):
     x = res.params[1] + zwrot[i-1] * res.params[2] + sigma[i-1] * res.params[3]
     sigma.append(x)
 
-plt.plot(zwrot)
-plt.plot(res._volatility)
-plt.show()
+zwrot_ = []
+for i in range(len(zwrot)):
+    x = (zwrot[i] - res.params[0])/res._volatility[i]
+    zwrot_.append(x)
+
+print(np.quantile(np.sort(zwrot_), 0.99), np.quantile(np.sort(zwrot_), 0.95))
