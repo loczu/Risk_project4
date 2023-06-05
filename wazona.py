@@ -40,5 +40,11 @@ def wazona(lam, data, level):
     
     return res
 
-print(wazona(0.96, zwrot, 0.99))
-print(wazona(0.96, zwrot, 0.95))
+fig, ax = plt.subplots(1, 1)
+ax.hist(zwrot, density = True, bins='auto', histtype='stepfilled', color = 'blue', alpha=0.2, label = 'nasz rozkład')
+plt.axvline(x = wazona(0.96, zwrot, 0.05), color = 'black', label = 'VaR 95')
+plt.axvline(x = wazona(0.96, zwrot, 0.01), color = 'gray', label = 'VaR 99')
+plt.title('Metoda historyczna ważona')
+ax.legend(loc='best', frameon=False)
+
+plt.show()
