@@ -2,8 +2,6 @@ import scipy.stats as ss
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import vartests
-import pandas as pd
 from fitter import Fitter
 
 def straty(table):
@@ -49,8 +47,8 @@ def VaR_t(quantile, df=8.383690833071302, loc=0.004378205763668096, scale = 1.84
 
     return ss.t.ppf(quantile, df, loc, scale) * ss.t.std(df) + ss.t.mean(df)
 
-VaR_95 = VaR_t(0.95, df = 8.383690833071302, loc =  0.004378205763668096, scale = 1.840771049586619)
-VaR_99 = VaR_t(0.99, df = 8.383690833071302, loc =  0.004378205763668096, scale = 1.840771049586619)
+VaR_95 = VaR_t(0.05, df = 8.383690833071302, loc =  0.004378205763668096, scale = 1.840771049586619)
+VaR_99 = VaR_t(0.01, df = 8.383690833071302, loc =  0.004378205763668096, scale = 1.840771049586619)
 
 def plot_VaR(df=8.383690833071302, loc=0.004378205763668096, scale = 1.840771049586619):
     """Return plot of distribution and VaR"""
@@ -74,8 +72,8 @@ print(plot_VaR())
 
 fig, ax = plt.subplots(1, 1)
 ax.hist(zwrot, density = True, bins='auto', histtype='stepfilled', color = 'blue', alpha=0.2, label = 'nasz rozkład')
-plt.axvline(x = np.quantile(zwrot, 0.95), color = 'black', label = 'VaR 95')
-plt.axvline(x = np.quantile(zwrot, 0.99), color = 'gray', label = 'VaR 99')
+plt.axvline(x = np.quantile(zwrot, 0.05), color = 'black', label = 'VaR 95')
+plt.axvline(x = np.quantile(zwrot, 0.01), color = 'gray', label = 'VaR 99')
 plt.title('Metoda historyczna zwykła')
 ax.legend(loc='best', frameon=False)
 
