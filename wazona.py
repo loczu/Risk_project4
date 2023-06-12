@@ -38,6 +38,8 @@ def wazona(lam, data, level):
     
     return res
 
+print(wazona(0.96, zwrot, 0.95), wazona(0.96, zwrot, 0.99))
+
 fig, ax = plt.subplots(1, 1)
 ax.hist(zwrot, density = True, bins='auto', histtype='stepfilled', color = 'blue', alpha=0.2, label = 'nasz rozkład')
 plt.axvline(x = wazona(0.96, zwrot, 0.95), color = 'black', label = 'VaR 95')

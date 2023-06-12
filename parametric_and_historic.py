@@ -50,6 +50,8 @@ def VaR_t(quantile, df=8.383690833071302, loc=0.004378205763668096, scale = 1.84
 VaR_95 = VaR_t(0.05, df = 8.383690833071302, loc =  0.004378205763668096, scale = 1.840771049586619)
 VaR_99 = VaR_t(0.01, df = 8.383690833071302, loc =  0.004378205763668096, scale = 1.840771049586619)
 
+print(VaR_95, VaR_99, np.quantile(zwrot, 0.01), np.quantile(zwrot, 0.05))
+
 def plot_VaR(df=8.383690833071302, loc=0.004378205763668096, scale = 1.840771049586619):
     """Return plot of distribution and VaR"""
 

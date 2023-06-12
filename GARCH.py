@@ -47,6 +47,8 @@ for i in range(len(zwrot_)):
 sigma99 = res.params[1] + zwrot[i99] * res.params[2] + res._volatility[i99] * res.params[3]
 sigma95 = res.params[1] + zwrot[i95] * res.params[2] + res._volatility[i95] * res.params[3]
 
+print(sigma99 * q99 + res.params[0], sigma95 * q95 + res.params[0])
+
 fig, ax = plt.subplots(1, 1)
 ax.hist(zwrot, density = True, bins='auto', histtype='stepfilled', color = 'blue', alpha=0.2, label = 'nasz rozkład')
 plt.axvline(x = sigma95 * q95 + res.params[0], color = 'black', label = 'VaR 95')
